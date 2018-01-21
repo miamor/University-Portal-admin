@@ -35,7 +35,7 @@ $config->addJS('dist', 'main.js'); ?>
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="<?php echo MAIN_URL ?>/assets/bootstrap/js/bootstrap.min.js"></script>
-	<script>var MAIN_URL = '<?php echo MAIN_URL ?>'; var WEB_URL = "<?php echo WEB_URL ?>"</script>
+	<script>var MAIN_URL = '<?php echo MAIN_URL ?>'; var WEB_URL = "<?php echo WEB_URL ?>"; var API_URL = "<?php echo API_URL ?>";</script>
 
 </head>
 <body>

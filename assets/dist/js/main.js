@@ -59,8 +59,6 @@ function locdau(alias) {
 
 var isMobile = ($(window).width() <= 500 ? true : false);
 var __uType = (localStorage.getItem('uType') ? localStorage.getItem('uType') : 'mod');
-var API_URL = '//localhost:3003/admin';
-var API_URL_ALL = API_URL.split('/manager_')[0];
 var __token = __userInfo = (localStorage.getItem('uType') ? localStorage.getItem('uType') : null);
 
 

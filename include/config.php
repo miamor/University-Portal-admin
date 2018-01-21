@@ -3,18 +3,27 @@ session_start();
 //error_reporting(E_ERROR | E_PARSE);
 
 $__pattern = '/MTA_admin';
+//$__pattern = '/tutu/test_admin';
+
 $__site_pattern = '/MTA';
+//$__site_pattern = '/test_frontend';
 
 define('HOST_URL', '//localhost');
+//define('HOST_URL', '//45.119.82.40');
 
 define('MAIN_PATH', './');
-$__siteDir = MAIN_PATH.'/../MTA';
+define('MAIN_URL', HOST_URL.$__pattern);
+
+define('MAIN_PATH', './');
+//$__siteDir = MAIN_PATH.'/../MTA';
+$__siteDir = MAIN_PATH.'/../test_frontend';
+
 $__templDir = $__siteDir.'/pages/templates';
 $__cssDir = $__siteDir.'/assets/dist/css';
 $__jsDir = $__siteDir.'/assets/dist/js/modules';
 define('MAIN_URL', 'http:'.HOST_URL.$__pattern);
 define('WEB_URL', 'http:'.HOST_URL.$__site_pattern);
-define('PAGE_URL', str_replace('_admin', '', MAIN_URL));
+define('PAGE_URL', WEB_URL);
 define('ASSETS', MAIN_URL.'/assets');
 define('CSS', ASSETS.'/dist/css');
 define('JS', ASSETS.'/dist/js');
