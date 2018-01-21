@@ -4,14 +4,13 @@
 	<table id="buyList" class="table table-bordered table-striped">
 		<thead>
 			<tr>
-			  <th>ID</th>
 			  <th>Name</th>
 			  <th>Link</th>
 			  <th>Category</th>
 			  <th>Hashtag</th>
 			  <th>Author</th>
 			  <th>Show</th>
-			  <th>Created</th>
+			  <th>Updated</th>
 			  <th class="th-none">Action</th>
 		  </tr>
 		</thead>

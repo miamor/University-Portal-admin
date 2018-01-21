@@ -14,6 +14,10 @@ var itemID = splitURL[splitURL.length-1];
 
             if (formType == 'edit') {
                 this.loadData();
+            } else {
+                $thisform.find('[name="name"]').change(function () {
+                    $thisform.changeLinkBaseOnName();
+                });
             }
 
             this.form.submit(function () {
@@ -27,9 +31,9 @@ var itemID = splitURL[splitURL.length-1];
             $.ajax({
                 url: API_URL+"/categories/"+itemID,
                 type: "get",
-                /*beforeSend: function (xhr) {
+                beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', __token);
-                },*/
+                },
                 success: function (response) {
                     for (var key in response) {
                         if (key !='show' && key != 'feature') {
@@ -40,11 +44,18 @@ var itemID = splitURL[splitURL.length-1];
                     $('[name="cat"] option[value="'+response.cat+'"]').attr('selected', 'selected');
                     $('input[name="show"][value="'+response.show+'"]').attr('checked', true).closest('.radio').addClass('checked');
                     $('input[name="feature"][value="'+response.feature+'"]').attr('checked', true).closest('.radio').addClass('checked');
+
+                    $('[name="link"]').attr('disabled', 'true');
                 },
                 error: function (a, b, c) {
                     console.log(a)
                 }
         	});
+        }
+
+        this.changeLinkBaseOnName = function () {
+            var name = $thisform.find('[name="name"]').val();
+            $thisform.find('[name="link"]').val(locdau(name));
         }
 
         this.add = function () {
@@ -58,17 +69,35 @@ var itemID = splitURL[splitURL.length-1];
                     return false;
                 }
             });
+
+            if ($thisform.find('[name="name"]').val().length < 6) {
+                mtip('', 'error', '', 'Trường <b>Tên</b> phải nhận giá trị có độ dài >= 6');
+                ok = false;
+                return false;
+            }
+            if ($thisform.find('[name="link"]').val().length < 6) {
+                mtip('', 'error', '', 'Trường <b>Link</b> phải nhận giá trị có độ dài >= 6');
+                ok = false;
+                return false;
+            }
+            if ($thisform.find('[name="link"]').val().search(/[^0-9a-zA-Z\-]+/) !== -1) {
+                mtip('', 'error', '', 'Trường <b>Link</b> chỉ nhận các ký tự 0-9, a-z, A-Z và gạch ngang (-)');
+                ok = false;
+                return false;
+            }
+
             if (ok) {
                 $.ajax({
                     url: API_URL+"/categories",
                     type: "post",
                     data: $thisform.form.serialize(),
-                    /*beforeSend: function (xhr) {
+                    beforeSend: function (xhr) {
                         xhr.setRequestHeader('Authorization', __token);
-                    },*/
+                    },
                     success: function (response) {
                         console.log(response);
                         mtip('', 'success', '', 'Thông tin người dùng đã được cập nhật thành công');
+                        location.href = MAIN_URL+'/categories/'+$thisform.find('[name="link"]').val();
                     },
                     error: function (a, b, c) {
                         console.log(a);
@@ -80,7 +109,7 @@ var itemID = splitURL[splitURL.length-1];
 
         this.edit = function () {
             var ok = true;
-            $('[attr-required="1"]').each(function () {
+            $('[attr-required="1"]').not('link-input').each(function () {
                 var val = $(this).find('input,select,textarea').val();
                 if ( !val ) {
                     console.log('Missing parameters');
@@ -89,6 +118,13 @@ var itemID = splitURL[splitURL.length-1];
                     return false;
                 }
             });
+
+            if ($thisform.find('[name="name"]').val().length < 6) {
+                mtip('', 'error', '', 'Trường <b>Tên</b> phải nhận giá trị có độ dài >= 6');
+                ok = false;
+                return false;
+            }
+
             if (ok) {
                 $.ajax({
                     url: API_URL+"/categories/"+itemID+"/",

@@ -23,11 +23,11 @@ else if ($n) {
     //$config->addJS('plugins', 'DataTables/datatables.min.js');
     //$config->addJS('dist', 'ratings.min.js');
     //echo '<link rel="stylesheet" href="'+PLUGINS+'/morris/morris.css">';
-    $config->addJS(-1, 'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js');
-    $config->addJS('plugins', 'morris/morris.min.js');
+    //$config->addJS(-1, 'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js');
+    //$config->addJS('plugins', 'morris/morris.min.js');
 
     $config->addJS('dist', $page.'/form.js');
-    $config->addJS('dist', $page.'/view.js');
+    $config->addJS('dist', $page.'/edit.js');
 
     include 'templates/'.$page.'/edit.php';
 }

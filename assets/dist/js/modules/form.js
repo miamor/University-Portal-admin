@@ -33,6 +33,13 @@ var currentModule;
             if (formType == 'edit') {
                 this.loadData();
             } else {
+                $('input[name="show"][value="true"]').attr('checked', true).closest('.radio').addClass('checked');
+                $('input[name="show_nav"][value="false"]').attr('checked', true).closest('.radio').addClass('checked');
+
+                $thisform.find('[name="text"]').change(function () {
+                    $thisform.changeLinkBaseOnName();
+                });
+
                 el = document.getElementById("module_template");
                 text = el.innerHTML;
 
@@ -65,9 +72,9 @@ var currentModule;
             $.ajax({
                 url: API_URL+"/images/"+$imOneDiv.attr('attr-id'),
                 type: "delete",
-                /*beforeSend: function (xhr) {
+                beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', __token);
-                },*/
+                },
                 success: function (response) {
                     console.log(response);
                     $thisform.deleteImageField(a);
@@ -104,13 +111,14 @@ var currentModule;
                 mtip('', 'error', '', 'Link ảnh/video không hợp lệ.')
             }
             if (ok) {
+                postData['module'] = __menu;
                 $.ajax({
                     url: API_URL+"/images/",
                     type: "post",
                     data: postData,
-                    /*beforeSend: function (xhr) {
+                    beforeSend: function (xhr) {
                         xhr.setRequestHeader('Authorization', __token);
-                    },*/
+                    },
                     success: function (response) {
                         console.log(response);
                         $imOneDiv.attr('attr-id', response._id);
@@ -142,13 +150,14 @@ var currentModule;
                 mtip('', 'error', '', 'Link ảnh/video không hợp lệ.')
             }
             if (ok) {
+                postData['module'] = __menu;
                 $.ajax({
                     url: API_URL+"/images/"+$imOneDiv.attr('attr-id'),
                     type: "put",
                     data: postData,
-                    /*beforeSend: function (xhr) {
+                    beforeSend: function (xhr) {
                         xhr.setRequestHeader('Authorization', __token);
-                    },*/
+                    },
                     success: function (response) {
                         console.log(response);
                         mtip('', 'success', '', 'Cập nhật thành công');
@@ -166,9 +175,9 @@ var currentModule;
             $.ajax({
                 url: API_URL+"/modules",
                 type: "get",
-                /*beforeSend: function (xhr) {
+                beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', __token);
-                },*/
+                },
                 success: function (response) {
                     $.each(response, function (i, v) {
                         if (!v.parent) {
@@ -185,9 +194,9 @@ var currentModule;
             $.ajax({
                 url: API_URL+"/modules/"+__menu,
                 type: "get",
-                /*beforeSend: function (xhr) {
+                beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', __token);
-                },*/
+                },
                 success: function (response) {
                     console.log(response);
             
@@ -199,8 +208,14 @@ var currentModule;
                             $('[name="'+i+'"]').val(v);
                         }
                     });
+                    $('[name="link"]').attr('disabled', 'true');
                     $('[name="type"] option[value="'+response.type+'"]').attr('selected', 'selected');
-                    $('[name="cat"] option[value="'+response.cat+'"]').attr('selected', 'selected');
+
+                    if (__menu == 'tin-tuc') { // this is a fix module
+                        $('.select-cats .col-lg-9').html('<input class="form-control" name="catt" type="text" disabled value="Tất cả"/> <input name="cat" type="hidden" value="all"/>');
+                    } else {
+                        $('[name="cat"] option[value="'+response.cat+'"]').attr('selected', 'selected');
+                    }
                     $('input[name="show"][value="'+response.show+'"]').attr('checked', true).closest('.radio').addClass('checked');
                     $('input[name="show_nav"][value="'+response.show_nav+'"]').attr('checked', true).closest('.radio').addClass('checked');
 
@@ -233,9 +248,9 @@ var currentModule;
             $.ajax({
                 url: API_URL+"/categories",
                 type: "get",
-                /*beforeSend: function (xhr) {
+                beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', __token);
-                },*/
+                },
                 success: function (r) {
                     $.each(r, function (i, v) {
                         if (!v.parent) {
@@ -261,11 +276,11 @@ var currentModule;
 
         this.loadImages = function () {
             $.ajax({
-                url: API_URL+"/images",
+                url: API_URL+"/images/module/"+__menu,
                 type: "get",
-                /*beforeSend: function (xhr) {
+                beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', __token);
-                },*/
+                },
                 success: function (response) {
                     console.log(response);
                     var html = '';
@@ -277,9 +292,14 @@ var currentModule;
             })
         }
 
+        this.changeLinkBaseOnName = function () {
+            var name = $thisform.find('[name="text"]').val();
+            $thisform.find('[name="link"]').val(locdau(name));
+        }
+
         this.add = function () {
             var ok = true;
-            $('[attr-required="1"]').each(function () {
+            $thisform.find('[attr-required="1"]').each(function () {
                 var val = $(this).find('input,select,textarea').val();
                 if ( !val ) {
                     console.log('Missing parameters');
@@ -288,6 +308,23 @@ var currentModule;
                     return false;
                 }
             });
+
+            if ($thisform.find('[name="text"]').val().length < 6) {
+                mtip('', 'error', '', 'Trường <b>Tên</b> phải nhận giá trị có độ dài >= 6');
+                ok = false;
+                return false;
+            }
+            if ($thisform.find('[name="link"]').val().length < 6) {
+                mtip('', 'error', '', 'Trường <b>Link</b> phải nhận giá trị có độ dài >= 6');
+                ok = false;
+                return false;
+            }
+            if ($thisform.find('[name="link"]').val().search(/[^0-9a-zA-Z\-]+/) !== -1) {
+                mtip('', 'error', '', 'Trường <b>Link</b> chỉ nhận các ký tự 0-9, a-z, A-Z và gạch ngang (-)');
+                ok = false;
+                return false;
+            }
+
             if (ok) {
                 if ($thisform.editor_tpl) {
                     var template = $thisform.editor_tpl.getValue();
@@ -298,6 +335,26 @@ var currentModule;
                     $thisform.form.find('[name="javascript"]').val(exjs_code);
                 }
             }
+            
+            if ($thisform.form.find('[name="javascript"]').val().length) {
+                // save js file to custom folder to add this to module templates
+                $.ajax({
+                    url: MAIN_URL+"/request/save_js_modules",
+                    type: "post",
+                    //data: 'filename='+$thisform.form.find('[name="link"]').val()+'&code='+$thisform.form.find('[name="javascript"]').val(),
+                    data: {
+                        filename: __menu,
+                        code: $thisform.form.find('[name="javascript"]').val()
+                    },
+                    success: function (response) {
+                        console.log(response);
+                    }
+                });
+                $thisform.form.find('[name="javascript"]').val('true');
+            } else {
+                $thisform.form.find('[name="javascript"]').val('');
+            }
+
             if (ok) {
                 /*var postData = objectifyForm($thisform.form.serializeArray());
                 console.log(postData);*/
@@ -309,12 +366,13 @@ var currentModule;
                     url: API_URL+"/modules/",
                     type: "post",
                     data: postData,
-                    /*beforeSend: function (xhr) {
+                    beforeSend: function (xhr) {
                         xhr.setRequestHeader('Authorization', __token);
-                    },*/
+                    },
                     success: function (response) {
                         console.log(response);
                         mtip('', 'success', '', 'Module cập nhật thành công');
+                        location.href = MAIN_URL+'/modules/'+$thisform.find('[name="link"]').val();
                     },
                     error: function (a, b, c) {
                         console.log(a);
@@ -326,7 +384,7 @@ var currentModule;
 
         this.edit = function () {
             var ok = true;
-            $('[attr-required="1"]').each(function () {
+            $('[attr-required="1"]').not('link-input').each(function () {
                 var val = $(this).find('input,select,textarea').val();
                 if ( !val ) {
                     console.log('Missing parameters');
@@ -335,6 +393,13 @@ var currentModule;
                     return false;
                 }
             });
+
+            if ($thisform.find('[name="text"]').val().length < 6) {
+                mtip('', 'error', '', 'Trường <b>Tên</b> phải nhận giá trị có độ dài >= 6');
+                ok = false;
+                return false;
+            }
+
             if (ok) {
                 if ($thisform.editor_tpl) {
                     var template = $thisform.editor_tpl.getValue();
@@ -345,6 +410,31 @@ var currentModule;
                     $thisform.form.find('[name="javascript"]').val(exjs_code);
                 }
             }
+
+            if ($thisform.form.find('[name="javascript"]').val().length) {
+                //console.log('filename='+__menu+'&code='+$thisform.form.find('[name="javascript"]').val());
+                // save js file to custom folder to add this to module templates
+                $.ajax({
+                    url: MAIN_URL+"/request/save_js_modules",
+                    type: "post",
+                    //data: 'filename='+__menu+'&code='+$thisform.form.find('[name="javascript"]').val(),
+                    data: {
+                        filename: __menu,
+                        code: $thisform.form.find('[name="javascript"]').val()
+                    },
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    error: function (a, b, c) {
+                        //console.log(a);
+                        mtip('', 'error', '', 'Gặp lỗi khi thay đổi external js');
+                    }
+                });
+                $thisform.form.find('[name="javascript"]').val('true');
+            } else {
+                $thisform.form.find('[name="javascript"]').val('');
+            }
+
             if (ok) {
                 /*var postData = objectifyForm($thisform.form.serializeArray());
                 console.log(postData);*/
@@ -361,7 +451,7 @@ var currentModule;
                         xhr.setRequestHeader('Authorization', __token);
                     },
                     success: function (response) {
-                        console.log(response);
+                        //console.log(response);
                         mtip('', 'success', '', 'Module cập nhật thành công');
                     },
                     error: function (a, b, c) {

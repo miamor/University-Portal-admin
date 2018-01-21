@@ -37,17 +37,18 @@ $(document).ready(function () {
             url: API_URL+"/posts",
             type: "get",
             dataSrc: '',
-            /*beforeSend: function (xhr) {
+            beforeSend: function (xhr) {
                 xhr.setRequestHeader('Authorization', __token);
-            }*/
+            }
         },
+        order: [[6, 'desc']],
 		columns: [
-            {
+            /*{
                 data: "_id",
                 render : function (data, type, row) {
                     return '<a href="'+location.href+'/'+data+'">'+data+'</a>'
                 }
-            },
+            },*/
             {
                 data: "name",
                 render : function (data, type, row) {
@@ -64,7 +65,7 @@ $(document).ready(function () {
 			{ data: "hashtag" },
 			{ data: "author"},
 			{ data: "show"},
-			{ data: "created_time"},
+			{ data: "updated_time"},
             {
                 data: "content",
                 render : function (data, type, row) {
@@ -73,10 +74,6 @@ $(document).ready(function () {
             }
 		],
         fnRowCallback: function (nRow, aData, iDisplayIndex) {
-            console.log(aData);
-            /*if (aData.taxiid != null) {
-                $(nRow).addClass('taken');
-            }*/
         }
 	})
 })

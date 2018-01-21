@@ -3,24 +3,23 @@ session_start();
 //error_reporting(E_ERROR | E_PARSE);
 
 $__pattern = '/MTA_admin';
+$__site_pattern = '/MTA';
+
+define('HOST_URL', '//localhost');
 
 define('MAIN_PATH', './');
-/*define('MAIN_PATH_EXEC', '/opt/lampp/htdocs'.$__pattern.'/');
-/*define('HOST_URL', '//localhost'.$__pattern);
-define('MAIN_URL', 'http:'.HOST_URL);
-define('HOST_URL', '//192.168.8.100'.$__pattern);
-*/
-define('HOST_URL', '//localhost'.$__pattern);
-define('MAIN_URL', 'http:'.HOST_URL);
+$__siteDir = MAIN_PATH.'/../MTA';
+$__templDir = $__siteDir.'/pages/templates';
+$__cssDir = $__siteDir.'/assets/dist/css';
+$__jsDir = $__siteDir.'/assets/dist/js/modules';
+define('MAIN_URL', 'http:'.HOST_URL.$__pattern);
+define('WEB_URL', 'http:'.HOST_URL.$__site_pattern);
 define('PAGE_URL', str_replace('_admin', '', MAIN_URL));
 define('ASSETS', MAIN_URL.'/assets');
 define('CSS', ASSETS.'/dist/css');
 define('JS', ASSETS.'/dist/js');
 define('IMG', ASSETS.'/dist/img');
 define('PLUGINS', ASSETS.'/plugins');
-
-define('GG_API_KEY', 'AIzaSyACkc-PYhlnPUWJaV2GlcCiEcuJujZsMdc');
-define('GG_CX_ID', '014962602028620469778:yf4br-mf6mk');
 
 $__page = str_replace($__pattern.'/', '', $_SERVER['REQUEST_URI']);
 
@@ -38,6 +37,7 @@ class Config {
 		$this->modulesLink = MAIN_URL.'/modules';
 		$this->pLink = MAIN_URL.'/posts';
 		$this->cLink = MAIN_URL.'/categories';
+		$this->aLink = MAIN_URL.'/appearance';
 		$this->JS = '';
 		$this->currentURL = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 		$this->u = (isset($_SESSION['user_id'])) ? (int)$_SESSION['user_id'] : null;

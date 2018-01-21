@@ -8,4 +8,4 @@ RewriteCond %{REQUEST_FILENAME}\.php -f
 #RewriteRule ^((user|modules|login|modsmod).*) index.php?page=$1
 
 RewriteRule ^((.*).*) index.php?page=$1
-RewriteRule !\.(json|js|ico|gif|jpg|jpeg|png|css|html|swf|flv|xml)$ index.php [QSA,L]
+RewriteRule !\.(json|js|ico|gif|jpg|jpeg|png|css|html|swf|flv|xml|eot|woff|ttf|woff2|svg)$ index.php [QSA,L]

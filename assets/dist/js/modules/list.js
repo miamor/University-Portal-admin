@@ -1,9 +1,3 @@
-$(document).ready(function () {
-    $.getJSON(API_URL+'/modules/full', function (response) {
-        console.log(response);
-    });
-})
-
 function del (itemID) {
     $a = $('a[attr-id="'+itemID+'"]');
     console.log('del '+itemID+' called!');
@@ -17,9 +11,9 @@ function del (itemID) {
             $.ajax({
                 url: API_URL+'/modules/'+itemID,
                 type: 'delete',
-                /*beforeSend: function(xhr) {
+                beforeSend: function(xhr) {
                     xhr.setRequestHeader('Authorization', __token);
-                },*/
+                },
                 success: function (response) {
                     console.log(response);
                     mtip('', 'success', '', 'Dự án đã xóa khỏi hệ thống thành công');
@@ -43,10 +37,11 @@ $(document).ready(function () {
             url: API_URL+"/modules/full",
             type: "get",
             dataSrc: '',
-            /*beforeSend: function (xhr) {
+            beforeSend: function (xhr) {
                 xhr.setRequestHeader('Authorization', __token);
-            }*/
+            }
         },
+        order: [[6, 'desc']],
 		columns: [
             {
                 data: "link",
@@ -64,18 +59,17 @@ $(document).ready(function () {
             },
 			{ data: "show" },
             { data: "show_nav"},
+            { data: "updated_time"},
             {
                 data: "content",
                 render : function (data, type, row) {
-                    return '<div class="row-btns"><a attr-id="'+row.link+'" class="row-btn-edit" href="'+location.href+'/'+row.link+'"><i class="fa fa-pencil"></i></a> <a attr-id="'+row.link+'" class="row-btn-del text-danger" href="#" onclick="javascript:del(\''+row.link+'\'); return false"><i class="fa fa-trash"></i></a></div>'
+                    var deleteBtn = '<span><i class="fa fa-trash"></i></span>';
+                    if (row.fix != 'true') deleteBtn = '<a attr-id="'+row.link+'" class="row-btn-del text-danger" href="#" onclick="javascript:del(\''+row.link+'\'); return false"><i class="fa fa-trash"></i></a>';
+                    return '<div class="row-btns"><a attr-id="'+row.link+'" class="row-btn-edit" href="'+location.href+'/'+row.link+'"><i class="fa fa-pencil"></i></a> '+deleteBtn+'</div>'
                 }
             }
 		],
         fnRowCallback: function (nRow, aData, iDisplayIndex) {
-            console.log(aData);
-            /*if (aData.taxiid != null) {
-                $(nRow).addClass('taken');
-            }*/
         }
 	})
 })

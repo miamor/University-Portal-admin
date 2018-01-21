@@ -37,9 +37,9 @@ $(document).ready(function () {
             url: API_URL+"/categories",
             type: "get",
             dataSrc: '',
-            /*beforeSend: function (xhr) {
+            beforeSend: function (xhr) {
                 xhr.setRequestHeader('Authorization', __token);
-            }*/
+            }
         },
 		columns: [
             {
@@ -62,10 +62,6 @@ $(document).ready(function () {
             }
 		],
         fnRowCallback: function (nRow, aData, iDisplayIndex) {
-            console.log(aData);
-            /*if (aData.taxiid != null) {
-                $(nRow).addClass('taken');
-            }*/
         }
 	})
 })

@@ -37,17 +37,18 @@ $(document).ready(function () {
             url: API_URL+"/users/",
             type: "get",
             dataSrc: '',
-            /*beforeSend: function (xhr) {
+            beforeSend: function (xhr) {
                 xhr.setRequestHeader('Authorization', __token);
-            }*/
+            }
         },
+        order: [[6, 'desc']],
 		columns: [
-            {
-                data: "id",
+            /*{
+                data: "_id",
                 render : function (data, type, row) {
                     return '<a href="'+location.href+'/'+data+'">'+data+'</a>'
                 }
-            },
+            },*/
             {
                 data: "username",
                 render : function (data, type, row) {
@@ -56,22 +57,16 @@ $(document).ready(function () {
             },
 			{ data: "name" },
 			{ data: "email" },
-			{ data: "phone" },
-            { data: "company" },
-            { data: "coin" },
-            { data: "rank"},
+			{ data: "type" },
+			{ data: "status" },
             {
-                data: "status",
+                data: "_id",
                 render : function (data, type, row) {
                     return '<div class="row-btns"><a attr-id="'+row._id+'" class="row-btn-edit" href="'+location.href+'/'+row._id+'"><i class="fa fa-pencil"></i></a> <a attr-id="'+row._id+'" class="row-btn-del text-danger" href="#" onclick="javascript:del(\''+row._id+'\'); return false"><i class="fa fa-trash"></i></a></div>'
                 }
             }
 		],
         fnRowCallback: function (nRow, aData, iDisplayIndex) {
-            console.log(aData);
-            /*if (aData.taxiid != null) {
-                $(nRow).addClass('taken');
-            }*/
         }
 	})
 })

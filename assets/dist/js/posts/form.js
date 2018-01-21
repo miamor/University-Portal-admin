@@ -15,7 +15,14 @@ var itemID = splitURL[splitURL.length-1];
             if (formType == 'edit') {
                 this.loadData();
             } else {
+                $('input[name="show"][value="true"]').attr('checked', true).closest('.radio').addClass('checked');
+                $('input[name="feature"][value="false"]').attr('checked', true).closest('.radio').addClass('checked');
+
                 this.getCategories();
+
+                $thisform.find('[name="name"]').change(function () {
+                    $thisform.changeLinkBaseOnName();
+                });
             }
 
             this.form.submit(function () {
@@ -25,13 +32,13 @@ var itemID = splitURL[splitURL.length-1];
             })
         }
 
-        this.getCategories = function (response) {
+        this.getCategories = function (cat) {
             $.ajax({
                 url: API_URL+"/categories",
                 type: "get",
-                /*beforeSend: function (xhr) {
+                beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', __token);
-                },*/
+                },
                 success: function (r) {
                     $.each(r, function (i, v) {
                         if (!v.parent) {
@@ -40,10 +47,10 @@ var itemID = splitURL[splitURL.length-1];
                             $('[name="cat"] option[value="'+v.parent+'"]').after('<option value="'+v.link+'">|--- '+v.name+'</option>');
                         }
                     });
-                    if (typeof response.cat == 'string') {
-                        $('[name="cat"] option[value="'+response.cat+'"]').attr('selected', 'selected');
+                    if (typeof cat == 'string') {
+                        $('[name="cat"] option[value="'+cat+'"]').attr('selected', 'selected');
                     } else {
-                        $.each(response.cat, function (i, v) {
+                        $.each(cat, function (i, v) {
                             $('[name="cat"] option[value="'+v+'"]').attr('selected', 'selected');
                         })
                     }
@@ -56,9 +63,9 @@ var itemID = splitURL[splitURL.length-1];
             $.ajax({
                 url: API_URL+"/posts/"+itemID,
                 type: "get",
-                /*beforeSend: function (xhr) {
+                beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', __token);
-                },*/
+                },
                 success: function (response) {
                     for (var key in response) {
                         if (key !='show' && key != 'feature') {
@@ -66,15 +73,22 @@ var itemID = splitURL[splitURL.length-1];
                         }
                     }
 
-                    $thisform.getCategories(response);
+                    $thisform.getCategories(response.cat);
 
                     $('input[name="show"][value="'+response.show+'"]').attr('checked', true).closest('.radio').addClass('checked');
                     $('input[name="feature"][value="'+response.feature+'"]').attr('checked', true).closest('.radio').addClass('checked');
+
+                    $('[name="link"]').attr('disabled', 'true');
                 },
                 error: function (a, b, c) {
                     console.log(a)
                 }
         	});
+        }
+
+        this.changeLinkBaseOnName = function () {
+            var name = $thisform.find('[name="name"]').val();
+            $thisform.find('[name="link"]').val(locdau(name));
         }
 
         this.add = function () {
@@ -88,6 +102,23 @@ var itemID = splitURL[splitURL.length-1];
                     return false;
                 }
             });
+
+            if ($thisform.find('[name="name"]').val().length < 6) {
+                mtip('', 'error', '', 'Trường <b>Tên</b> phải nhận giá trị có độ dài >= 6');
+                ok = false;
+                return false;
+            }
+            if ($thisform.find('[name="link"]').val().length < 6) {
+                mtip('', 'error', '', 'Trường <b>Link</b> phải nhận giá trị có độ dài >= 6');
+                ok = false;
+                return false;
+            }
+            if ($thisform.find('[name="link"]').val().search(/[^0-9a-zA-Z\-]+/) !== -1) {
+                mtip('', 'error', '', 'Trường <b>Link</b> chỉ nhận các ký tự 0-9, a-z, A-Z và gạch ngang (-)');
+                ok = false;
+                return false;
+            }
+
             if (ok) {
                 /*var postData = objectifyForm($thisform.form.serializeArray());
                 console.log(postData);*/
@@ -99,12 +130,13 @@ var itemID = splitURL[splitURL.length-1];
                     url: API_URL+"/posts",
                     type: "post",
                     data: postData,
-                    /*beforeSend: function (xhr) {
+                    beforeSend: function (xhr) {
                         xhr.setRequestHeader('Authorization', __token);
-                    },*/
+                    },
                     success: function (response) {
                         console.log(response);
                         mtip('', 'success', '', 'Thông tin người dùng đã được cập nhật thành công');
+                        location.href = MAIN_URL+'/posts';
                     },
                     error: function (a, b, c) {
                         console.log(a);
@@ -116,7 +148,7 @@ var itemID = splitURL[splitURL.length-1];
 
         this.edit = function () {
             var ok = true;
-            $('[attr-required="1"]').each(function () {
+            $('[attr-required="1"]').not('link-input').each(function () {
                 var val = $(this).find('input,select,textarea').val();
                 if ( !val ) {
                     console.log('Missing parameters');
@@ -125,6 +157,13 @@ var itemID = splitURL[splitURL.length-1];
                     return false;
                 }
             });
+
+            if ($thisform.find('[name="name"]').val().length < 6) {
+                mtip('', 'error', '', 'Trường <b>Tên</b> phải nhận giá trị có độ dài >= 6');
+                ok = false;
+                return false;
+            }
+
             if (ok) {
                 /*var postData = objectifyForm($thisform.form.serializeArray());
                 console.log(postData);*/

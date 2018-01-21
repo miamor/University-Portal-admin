@@ -9,7 +9,7 @@
 <div class="legendBox form-group customshow news">
     <h3 class="legendBox-header">Module type News custom</h3>
     <div class="news-settings">
-        <div class="form-group">
+        <div class="form-group select-cats">
             <div class="control-label col-lg-3">Hiển thị bài viết ở chuyên mục</div>
             <div class="col-lg-9">
                 <select class="form-control chosen-select" multiple name="cat">

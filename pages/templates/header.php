@@ -25,14 +25,17 @@ $config->addJS('dist', 'main.js'); ?>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="<?php echo MAIN_URL ?>/assets/jquery/jquery-2.2.3.min.js"></script>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+	<link rel="stylesheet" href="<?php echo MAIN_URL ?>/assets/jquery/jquery-ui.min.css">
+	<script src="<?php echo MAIN_URL ?>/assets/jquery/jquery-ui.min.js"></script>
+	<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!--	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script> -->
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="<?php echo MAIN_URL ?>/assets/bootstrap/js/bootstrap.min.js"></script>
-	<script>var MAIN_URL = '<?php echo MAIN_URL ?>' </script>
+	<script>var MAIN_URL = '<?php echo MAIN_URL ?>'; var WEB_URL = "<?php echo WEB_URL ?>"</script>
 
 </head>
 <body>
@@ -86,11 +89,11 @@ $config->addJS('dist', 'main.js'); ?>
 	</div>
 	<nav id="top_navbar" class="navbar navbar-static-top">
 		<ul class="items-list">
+			<li class="one-item <?php if ($page == 'appearance') echo 'active' ?>" id="news">
+				<a href="<?php echo MAIN_URL ?>/appearance">General &amp; Appearance</a>
+			</li>
 			<li class="one-item <?php if ($page == 'modules') echo 'active' ?>" id="modules">
 				<a href="<?php echo MAIN_URL ?>/modules">Modules</a>
-			</li>
-			<li class="one-item <?php if ($page == 'posts') echo 'active' ?>" id="news">
-				<a href="<?php echo MAIN_URL ?>/posts">Posts</a>
 			</li>
 			<li class="one-item <?php if ($page == 'user') echo 'active' ?>" id="user">
 				<a href="<?php echo MAIN_URL ?>/user">User</a>

@@ -23,6 +23,7 @@ $__pageAr = array_values(array_filter(explode('/', explode('?', rtrim($__page))[
 if ($__pageAr) {
 	$page = $__pageAr[0];
 	$n = (array_key_exists(1, $__pageAr) && $__pageAr[1]) ? $__pageAr[1] : null;
+	$m = (array_key_exists(2, $__pageAr) && $__pageAr[2]) ? $__pageAr[2] : null;
 	$requestAr = explode('?', $__page);
 //	print_r($requestAr);
 //	echo $requestAr[1].'~~~';
@@ -47,13 +48,17 @@ if (!isset($page) || !$page) $page = 'index';
 
 //$config->emoTextareaDropdown();
 
-if (!file_exists('pages/'.$page.'.php')) $page = 'error';
-
 $pageTitle = 'MTA admincp';
 
-if ($page) {
-//	if (!$do && !$v && !$temp) include 'pages/views/_temp/header.php';
+if ($page == 'request') {
+	header('Content-Type: application/json; charset=utf-8');
+  	include 'request/'.$n.'.php';
+}
+else {
+	if (!file_exists('pages/'.$page.'.php')) $page = 'error';
+
+	//if (!$do && !$v && !$temp) include 'pages/views/_temp/header.php';
 	include 'pages/'.$page.'.php';
-//	if ($temp) include 'pages/views/_temp/'.$page.'/'.$temp.'.php';
+	//if ($temp) include 'pages/views/_temp/'.$page.'/'.$temp.'.php';
 	if (!$do && !$v && !$temp) include 'pages/templates/footer.php';
 }

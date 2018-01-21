@@ -4,14 +4,11 @@
 	<table id="buyList" class="table table-bordered table-striped">
 		<thead>
 			<tr>
-			  <th>ID</th>
 			  <th>Username</th>
 			  <th>Name</th>
 			  <th>Email</th>
-			  <th>Điện thoại</th>
-			  <th>Công ty</th>
-			  <th>Coin</th>
-			  <th>Hạng</th>
+			  <th>Type</th>
+			  <th>Activate</th>
 			  <th class="th-none">Action</th>
 		  </tr>
 		</thead>

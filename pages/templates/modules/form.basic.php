@@ -7,7 +7,7 @@
         </div>
         <div class="clearfix"></div>
     </div>
-    <div class="form-group" attr-required="1">
+    <div class="form-group link-input" attr-required="1">
         <div class="control-label col-lg-3">Link</div>
         <div class="col-lg-9">
             <input class="form-control" type="text" name="link"/>

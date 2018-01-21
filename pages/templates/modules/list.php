@@ -9,7 +9,8 @@
 			  <th>Type</th>
 			  <th>Parent</th>
 			  <th>Show</th>
-			  <th>Link on navbar</th>
+			  <th>Navbar link</th>
+			  <th>Updated</th>
 			  <th class="th-none">Action</th>
 		  </tr>
 		</thead>
