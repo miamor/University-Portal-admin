@@ -131,11 +131,15 @@ function setUserInfoNav() {
     $('.myName, #meinfo_name').text(__userInfo.name.split(' ').reverse()[0]);
     $('#meinfo_uname').text(__userInfo.username);
     $('#meinfo_coins').text(__userInfo.coin);
+    $('#meinfo_type').text(__userInfo.type);
     $('#meinfo_profile_link').attr('href', MAIN_URL + '/user/' + __userInfo.username);
-
-    if (isMobile) {
-        $('.nav-user-mobile').show().html('<a href="' + MAIN_URL + '/user/' + __userInfo.username + '">' + $('.nav-user .dropdown > a').html() + '</a>');
+    if (__userInfo.type != 'admin') {
+        $('.one-item#user').remove();
     }
+
+    /*if (isMobile) {
+        $('.nav-user-mobile').show().html('<a href="' + MAIN_URL + '/user/' + __userInfo.username + '">' + $('.nav-user .dropdown > a').html() + '</a>');
+    }*/
 }
 
 function mtip(a, c, title, content) {

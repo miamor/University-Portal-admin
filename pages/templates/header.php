@@ -56,7 +56,7 @@ $config->addJS('dist', 'main.js'); ?>
 				<ul class="dropdown-menu with-triangle pull-right">
 					<li class="user-header">
 						<img src="<?php echo MAIN_URL ?>/data/avt.png" id="meinfo_avt" class="img-circle" alt="User Image">
-						<p><span id="meinfo_name"></span> - <small id="meinfo_uname">@tutu</small></p>
+						<p><span id="meinfo_name"></span> - <small id="meinfo_uname">@tutu</small> (<span id="meinfo_type"></span>)</p>
 					</li>
 					<!-- Menu Body -->
 					<li class="user-body u-sta sta-list">
@@ -97,9 +97,6 @@ $config->addJS('dist', 'main.js'); ?>
 			</li>
 			<li class="one-item <?php if ($page == 'user') echo 'active' ?>" id="user">
 				<a href="<?php echo MAIN_URL ?>/user">User</a>
-			</li>
-			<li class="one-item <?php if ($page == 'mod') echo 'active' ?>" id="mod">
-				<a href="<?php echo MAIN_URL ?>/modsmod">Mods &amp; Smods</a>
 			</li>
 		</ul>
 
