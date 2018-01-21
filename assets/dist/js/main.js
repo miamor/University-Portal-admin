@@ -740,8 +740,8 @@ jQuery(document).ready(function($) {
 
     logoutBtn();
 
-    if (API_URL.indexOf("manager_mod") > -1) {
-        $(".smod-box").remove();
+    if (location.href.indexOf("/user") > -1 && __userInfo.type != 'admin') {
+        location.href = MAIN_URL;
     }
 
     if (localStorage.getItem('token')) {

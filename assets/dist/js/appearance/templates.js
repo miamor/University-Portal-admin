@@ -6,6 +6,7 @@ $(document).ready(function () {
     editor_tpl.setTheme("ace/theme/chrome");
     editor_tpl.getSession().setMode("ace/mode/html");
     editor_tpl.session.setValue(text);
+    editor_tpl.getSession().setUseWrapMode(true);
 
     //console.log(__menu);
     $('#submit_code').submit(function () {

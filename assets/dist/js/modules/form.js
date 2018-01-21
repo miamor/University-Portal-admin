@@ -47,10 +47,12 @@ var currentModule;
                 $thisform.editor_tpl.setTheme("ace/theme/chrome");
                 $thisform.editor_tpl.getSession().setMode("ace/mode/html");
                 $thisform.editor_tpl.session.setValue(text);
+                $thisform.editor_tpl.getSession().setUseWrapMode(true);
 
                 $thisform.editor_js = ace.edit("module_js");
                 $thisform.editor_js.setTheme("ace/theme/chrome");
                 $thisform.editor_js.getSession().setMode("ace/mode/javascript");
+                $thisform.editor_js.getSession().setUseWrapMode(true);
             }
 
             this.addImagesCtrl();
@@ -235,10 +237,12 @@ var currentModule;
                     $thisform.editor_tpl.setTheme("ace/theme/chrome");
                     $thisform.editor_tpl.getSession().setMode("ace/mode/html");
                     $thisform.editor_tpl.session.setValue(text);
+                    $thisform.editor_tpl.getSession().setUseWrapMode(true);
 
                     $thisform.editor_js = ace.edit("module_js");
                     $thisform.editor_js.setTheme("ace/theme/chrome");
                     $thisform.editor_js.getSession().setMode("ace/mode/javascript");
+                    $thisform.editor_js.getSession().setUseWrapMode(true);
                 }
             });
         }
