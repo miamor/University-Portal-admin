@@ -19,7 +19,7 @@ define('MAIN_PATH', './');
 $__siteDir = MAIN_PATH.'/../MTA';
 //$__siteDir = MAIN_PATH.'/../test_frontend';
 
-define('API_URL', HOST_URL.':3003');
+define('API_URL', HOST_URL.':3003/admin');
 
 $__templDir = $__siteDir.'/pages/templates';
 $__cssDir = $__siteDir.'/assets/dist/css';
