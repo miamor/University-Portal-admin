@@ -1,7 +1,9 @@
 <?php
 session_start();
 //error_reporting(E_ERROR | E_PARSE);
+define('MAIN_PATH', './');
 
+/*** Start editing config here ***/
 $__pattern = '/MTA_admin';
 //$__pattern = '/tutu/test_admin';
 
@@ -11,20 +13,18 @@ $__site_pattern = '/MTA';
 define('HOST_URL', '//localhost');
 //define('HOST_URL', '//45.119.82.40');
 
-define('MAIN_PATH', './');
-define('MAIN_URL', HOST_URL.$__pattern);
-
-define('MAIN_PATH', './');
-
 $__siteDir = MAIN_PATH.'/../MTA';
 //$__siteDir = MAIN_PATH.'/../test_frontend';
+/*** End editing config here ***/
+
 
 define('API_URL', HOST_URL.':3003/admin');
 
 $__templDir = $__siteDir.'/pages/templates';
 $__cssDir = $__siteDir.'/assets/dist/css';
 $__jsDir = $__siteDir.'/assets/dist/js/modules';
-define('MAIN_URL', 'http:'.HOST_URL.$__pattern);
+
+define('MAIN_URL', HOST_URL.$__pattern);
 define('WEB_URL', 'http:'.HOST_URL.$__site_pattern);
 define('PAGE_URL', WEB_URL);
 define('ASSETS', MAIN_URL.'/assets');

@@ -2,6 +2,7 @@ $(document).ready(function () {
     editor_tpl = ace.edit('css_code');
     editor_tpl.setTheme("ace/theme/chrome");
     editor_tpl.getSession().setMode("ace/mode/css");
+    editor_tpl.setOption("indentedSoftWrap", false);
 
     $('#submit_code').submit(function () {
         $thisform = $(this);
