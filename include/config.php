@@ -15,8 +15,11 @@ define('MAIN_PATH', './');
 define('MAIN_URL', HOST_URL.$__pattern);
 
 define('MAIN_PATH', './');
-//$__siteDir = MAIN_PATH.'/../MTA';
-$__siteDir = MAIN_PATH.'/../test_frontend';
+
+$__siteDir = MAIN_PATH.'/../MTA';
+//$__siteDir = MAIN_PATH.'/../test_frontend';
+
+define('API_URL', HOST_URL.':3003');
 
 $__templDir = $__siteDir.'/pages/templates';
 $__cssDir = $__siteDir.'/assets/dist/css';

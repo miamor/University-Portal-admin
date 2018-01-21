@@ -13,7 +13,7 @@ function submitLoginForm () {
                 localStorage.setItem("uType", response.uType);
                 localStorage.setItem("login_time" , Math.floor(Date.now() / 1000));
                 console.log(__token);
-                location.href = MAIN_URL;
+                //location.href = MAIN_URL;
             }
             /*if (("token" in response) == false) {
                 mtip('', 'error', 'Lỗi', response.message);
