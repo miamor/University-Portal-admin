@@ -50,9 +50,10 @@ if (!isset($page) || !$page) $page = 'index';
 
 $pageTitle = 'MTA admincp';
 
-if ($page == 'request') {
+if ($page == '__request') {
 	header('Content-Type: application/json; charset=utf-8');
-  	include 'request/'.$n.'.php';
+	  if (file_exist('__request/'.$n.'.php')) echo '__request/'.$n.'.php';
+	  else echo 'Error! No file found!'
 }
 else {
 	if (!file_exists('pages/'.$page.'.php')) $page = 'error';

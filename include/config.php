@@ -8,7 +8,7 @@ $__pattern = '/MTA_admin';
 //$__pattern = '/tutu/test_admin';
 
 $__site_pattern = '/MTA';
-//$__site_pattern = '/test_frontend';
+//$__site_pattern = '/tutu/test_frontend';
 
 define('HOST_URL', '//localhost');
 //define('HOST_URL', '//45.119.82.40');
