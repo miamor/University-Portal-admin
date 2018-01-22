@@ -89,7 +89,7 @@ var userID = splitURL[splitURL.length-1];
                 var postData = $thisform.form.serialize();
 
                 $.ajax({
-                    url: MAIN_URL+"/request/save_info",
+                    url: MAIN_URL+"/__request/save_info",
                     type: "post",
                     data: postData,
                     success: function (response) {

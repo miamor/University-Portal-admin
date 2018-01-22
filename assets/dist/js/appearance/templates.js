@@ -13,7 +13,7 @@ $(document).ready(function () {
         $thisform = $(this);
         $thisform.find('[name="code"]').val(editor_tpl.getValue());
         $.ajax({
-            url: MAIN_URL+"/request/save_tpl_modules",
+            url: MAIN_URL+"/__request/save_tpl_modules",
             type: "post",
             data: {
                 filename: __menu,

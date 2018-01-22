@@ -343,7 +343,7 @@ var currentModule;
             if ($thisform.form.find('[name="javascript"]').val().length) {
                 // save js file to custom folder to add this to module templates
                 $.ajax({
-                    url: MAIN_URL+"/request/save_js_modules",
+                    url: MAIN_URL+"/__request/save_js_modules",
                     type: "post",
                     //data: 'filename='+$thisform.form.find('[name="link"]').val()+'&code='+$thisform.form.find('[name="javascript"]').val(),
                     data: {
@@ -419,7 +419,7 @@ var currentModule;
                 //console.log('filename='+__menu+'&code='+$thisform.form.find('[name="javascript"]').val());
                 // save js file to custom folder to add this to module templates
                 $.ajax({
-                    url: MAIN_URL+"/request/save_js_modules",
+                    url: MAIN_URL+"/__request/save_js_modules",
                     type: "post",
                     //data: 'filename='+__menu+'&code='+$thisform.form.find('[name="javascript"]').val(),
                     data: {

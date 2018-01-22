@@ -9,7 +9,7 @@ $(document).ready(function () {
         $thisform = $(this);
         $thisform.find('[name="code"]').val(editor_tpl.getValue());
         $.ajax({
-            url: MAIN_URL+"/request/save_css",
+            url: MAIN_URL+"/__request/save_css",
             type: "post",
             data: {
                 code: $thisform.find('[name="code"]').val()
