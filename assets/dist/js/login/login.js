@@ -39,7 +39,7 @@ function submitLoginForm () {
             if (c == 'Unauthorized') {
                 mtip('', 'error', '', 'Could not verify!');
             } else {
-                //mtip('', 'error', '', 'Lỗi hệ thống! Vui lòng liên hệ với quản trị viên để được hỗ trợ sớm nhất!');
+                mtip('', 'error', '', 'Lỗi hệ thống! Vui lòng liên hệ với quản trị viên để được hỗ trợ sớm nhất!');
             }
         }
     });

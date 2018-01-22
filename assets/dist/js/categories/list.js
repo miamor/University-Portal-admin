@@ -41,6 +41,8 @@ $(document).ready(function () {
                 xhr.setRequestHeader('Authorization', __token);
             }
         },
+        order: [[2, 'desc']],
+        pageLength: 25,
 		columns: [
             {
                 data: "name",
@@ -54,6 +56,7 @@ $(document).ready(function () {
                     return '<a href="'+location.href+'/'+row.link+'">'+data+'</a>'
                 }
             },
+            { data: "updated_time"},
             {
                 data: "_id",
                 render : function (data, type, row) {

@@ -6,6 +6,7 @@
 			<tr>
 			  <th>Name</th>
 			  <th>Link</th>
+			  <th>Updated</th>
 			  <th class="th-none">Action</th>
 		  </tr>
 		</thead>

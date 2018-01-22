@@ -716,8 +716,9 @@ function logout(autoLoggedOut = false) {
     console.log('Logged out!');
     $('.nav-user #me_login_link').show();
     $('.nav-user #me_dropdown_info').hide();
-    if (autoLoggedOut) loadLoginPopup(autoLoggedOut);
-    else location.reload();
+    /*if (autoLoggedOut) loadLoginPopup(autoLoggedOut);
+    else location.reload();*/
+    location.reload();
 }
 
 function logoutBtn() {

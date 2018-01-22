@@ -42,6 +42,7 @@ $(document).ready(function () {
             }
         },
         order: [[6, 'desc']],
+        pageLength: 25,
 		columns: [
             /*{
                 data: "_id",

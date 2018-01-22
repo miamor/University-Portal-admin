@@ -384,7 +384,7 @@ table.text-center,table.text-center td,table.text-center th{text-align:center}
 .row-btns>a,.row-btns>span{font-size:20px;margin:0 3px}
 .hide{display:none}
 .hidden{display:none!important}
-.ace-editor{position:relative;height:400px;width:100%}
+.ace-editor{position:relative;height:460px;width:100%}
 .customshow{display:none}
 .image-one-submit{position: absolute;bottom:0;right:0}
 .add-images{position:relative;display:inline-block;cursor:pointer;padding:8px 20px;color:#777;border:2px dashed #ddd;font-size:16px;text-align:center;margin:20px auto 5px}
