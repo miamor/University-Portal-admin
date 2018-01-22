@@ -52,8 +52,8 @@ $pageTitle = 'MTA admincp';
 
 if ($page == '__request') {
 	header('Content-Type: application/json; charset=utf-8');
-	  if (file_exist('__request/'.$n.'.php')) echo '__request/'.$n.'.php';
-	  else echo 'Error! No file found!'
+	if (file_exists(MAIN_PATH.'/request/'.$n.'.php')) include MAIN_PATH.'/request/'.$n.'.php';
+	else echo json_encode(array('status'=>'error', 'message'=>'Error! No file found!'));
 }
 else {
 	if (!file_exists('pages/'.$page.'.php')) $page = 'error';
