@@ -1,5 +1,5 @@
 <?php
-
+if (!isset($n)) $n = '';
 if ($n) {
     $pageTitle = 'Modules - Edit';
     include 'templates/header.php';

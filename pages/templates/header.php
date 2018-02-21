@@ -41,9 +41,7 @@ $config->addJS('dist', 'main.js'); ?>
 <body>
 
 <header>
-	<div class="header_top">
-		<div class="logo left">360land admin</div>
-
+	<nav id="top_navbar" class="header_top navbar navbar-static-top">
 		<div class="nav-user right">
 			<a class="hide" id="me_login_link" href="<?php echo MAIN_URL ?>/login">Đăng nhập</a>
 			<div class="dropdown hide" id="me_dropdown_info">
@@ -53,26 +51,10 @@ $config->addJS('dist', 'main.js'); ?>
 					<span class="hidden myID"></span>
 					<div class="clearfix"></div>
 				</a>
-				<ul class="dropdown-menu with-triangle pull-right">
-					<li class="user-header">
-						<img src="<?php echo MAIN_URL ?>/data/avt.png" id="meinfo_avt" class="img-circle" alt="User Image">
-						<p><span class="hidden" id="meinfo_name"></span><small id="meinfo_uname">@tutu</small> <small>(<span id="meinfo_type"></span>)</small></p>
-					</li>
-					<!-- Menu Footer-->
-					<li class="user-footer">
-						<div class="pull-left">
-							<a class="btn btn-success btn-flat" id="meinfo_profile_link" href="#">Profile</a>
-						</div>
-						<div class="pull-right">
-							<a class="btn btn-danger btn-flat" href="<?php echo MAIN_URL ?>/logout">Logout</a>
-						</div>
-					</li>
-				</ul>
 			</div>
+			<a id="me_logout_link" href="<?php echo MAIN_URL ?>/logout">Logout</a>
 		</div>
 
-	</div>
-	<nav id="top_navbar" class="navbar navbar-static-top">
 		<ul class="items-list">
 			<li class="one-item <?php if ($page == 'appearance') echo 'active' ?>" id="news">
 				<a href="<?php echo MAIN_URL ?>/appearance">General &amp; Appearance</a>
@@ -85,19 +67,12 @@ $config->addJS('dist', 'main.js'); ?>
 			</li>
 		</ul>
 
-		<div class="form-search">
-			<form class="search-form">
-				<input name="keywords" class="search-input" placeholder="Input something..." type="text">
-				<div id="search_button" class="search-button"></div>
-			</form>
-		</div>
-
 	</nav>
 </header>
 
 
 <div id="main-content" class="page-<?php echo $page ?>">
-	<menu class="menu-left col-lg-3">
+	<menu class="menu-left">
 		<?php if (file_exists('pages/templates/menu/'.$page.'.php')) include 'menu/'.$page.'.php' ?>
 	</menu>
-	<main class="col-lg-9">
+	<main class="mainpage">

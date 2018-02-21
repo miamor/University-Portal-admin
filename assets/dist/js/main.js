@@ -737,6 +737,7 @@ jQuery(document).ready(function($) {
     if ($('menu').height() < $('main').height()) {
         $('menu').height($('main').height());
     }
+    $('menu').height($(document).height());
     flatApp();
 
     logoutBtn();

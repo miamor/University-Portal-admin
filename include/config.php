@@ -1,20 +1,22 @@
 <?php
 session_start();
 //error_reporting(E_ERROR | E_PARSE);
-define('MAIN_PATH', '/var/www/html/tutu/test_admin');
 
 /*** Start editing config here ***/
-//$__pattern = '/MTA_admin';
-$__pattern = '/tutu/test_admin';
+define('MAIN_PATH', './');
+//define('MAIN_PATH', '/var/www/html/tutu/test_admin');
 
-//$__site_pattern = '/MTA';
-$__site_pattern = '/tutu/test_frontend';
+$__pattern = '/MTA_admin';
+//$__pattern = '/tutu/test_admin';
 
-//define('HOST_URL', '//localhost');
-define('HOST_URL', '//45.119.82.40');
+$__site_pattern = '/MTA';
+//$__site_pattern = '/tutu/test_frontend';
 
-//$__siteDir = MAIN_PATH.'/../MTA';
-$__siteDir = MAIN_PATH.'/../test_frontend';
+define('HOST_URL', '//localhost');
+//define('HOST_URL', '//45.119.82.40');
+
+$__siteDir = MAIN_PATH.'/../MTA';
+//$__siteDir = MAIN_PATH.'/../test_frontend';
 /*** End editing config here ***/
 
 

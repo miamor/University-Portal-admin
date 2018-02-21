@@ -42,7 +42,7 @@ $_id = $config->get('id');
 if ($do) header('Content-Type: text/plain; charset=utf-8');
 else header('Content-Type: text/html; charset=utf-8');
 
-if (!isset($page) || !$page) $page = 'index';
+if (!isset($page) || !$page) $page = 'modules';
 
 //$page_ = $page;
 

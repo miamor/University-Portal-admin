@@ -47,7 +47,7 @@ $(document).ready(function () {
             {
                 data: "link",
                 render : function (data, type, row) {
-                    return '<a href="'+location.href+'/'+data+'">'+data+'</a>'
+                    return '<a href="'+MAIN_URL+'/modules/'+data+'">'+data+'</a>'
                 }
             },
 			{ data: "text" },
