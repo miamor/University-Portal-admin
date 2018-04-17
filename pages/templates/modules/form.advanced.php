@@ -1,3 +1,9 @@
+<div class="legendBox form-group customshow info" style="display:block">
+    <h3 class="legendBox-header">Module type Info custom</h3>
+    No advanced options
+    <div class="clearfix"></div>
+</div>
+
 <div class="legendBox form-group customshow gallery">
     <h3 class="legendBox-header">Module type Gallery custom</h3>
     <div class="gallery-images">

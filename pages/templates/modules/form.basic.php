@@ -28,7 +28,7 @@
         <div class="col-lg-9">
             <select class="form-control" name="type">
                 <option value="gallery">Gallery</option>
-                <option value="info">Info</option>
+                <option selected value="info">Info</option>
                 <option value="news">News</option>
             </select>
         </div>

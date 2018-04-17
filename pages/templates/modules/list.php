@@ -4,7 +4,8 @@
     <table id="list" class="table table-bordered table-striped">
 		<thead>
 			<tr>
-			  <th>Link</th>
+				<th>Fixed</th>
+				<th>Link</th>
 			  <th>Text</th>
 			  <th>Type</th>
 			  <th>Parent</th>

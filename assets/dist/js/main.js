@@ -140,18 +140,22 @@ function setUserInfoNav() {
     }*/
 }
 
-function mtip(a, c, title, content) {
+function mtip(a, c, title, content, replaceAll) {
     $(".alert").length && $(".alert").remove();
     if (a && a.length) {
-        if (a == 'alert') {
-            $('body').append('<div class="the-board-fixed"></div><div class="alert-fixed alert-' + c + '"><a class="close" onclick="htip(\'just-add\')" data-dismiss="alert">\u00d7</a><strong>' + title + " </strong>" + content + "</div>");
-        } else $(a).prepend('<div class="alert alert-' + c + ' just-add"><a class="close" onclick="htip(\'just-add\')" data-dismiss="alert">\u00d7</a><strong>' + title + " </strong>" + content + "</div>");
-    } else $('body').append('<div class="alert alert-' + c + ' just-add"><a class="close" onclick="htip(\'just-add\')" data-dismiss="alert">\u00d7</a><strong>' + title + " </strong>" + content + "</div>");
-    wi = $('.just-add').width() / 2;
-    $('.just-add').css("left", "calc(50% - " + wi + "px)").animate({
-        bottom: "+=50"
-    }, 200);
-    stip('just-add')
+        alertsContent = '<div class="alerts alert-' + c + ' just-add"><a class="close" onclick="htip(\'just-add\')" data-dismiss="alert">\u00d7</a><strong>' + title + " </strong>" + content + "</div>";
+        if (replaceAll == true) $(a).html(alertsContent)
+        else $(a).prepend(alertsContent);
+    } else {
+        alertsContent = '<div class="alert alert-' + c + ' just-add"><a class="close" onclick="htip(\'just-add\')" data-dismiss="alert">\u00d7</a><strong>' + title + " </strong>" + content + "</div>";
+        $('body').append(alertsContent);
+
+        wi = $('.just-add').width() / 2;
+        $('.just-add').css("left", "calc(50% - " + wi + "px)").animate({
+            bottom: "+=50"
+        }, 200);
+        stip('just-add')
+    }
 }
 
 function htip(a) {

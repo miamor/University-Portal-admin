@@ -16,9 +16,13 @@ function del (itemID) {
                 },
                 success: function (response) {
                     console.log(response);
-                    mtip('', 'success', '', 'Dự án đã xóa khỏi hệ thống thành công');
+                    if (response.status == 'success') {
+                        mtip('', 'success', '', 'Tin bài đã xóa khỏi hệ thống thành công');
 
-                    $a.closest('tr').remove();
+                        $a.closest('tr').remove();
+                    } else {
+                        mtip('', 'success', '', 'Có lỗi khi xóa dữ liệu');
+                    }
                 },
                 error: function (a, b, c) {
                     console.log(a);
