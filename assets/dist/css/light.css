@@ -182,7 +182,7 @@ option{height:30px;padding:5px 10px 5px 21px}
 .add-form-submit:not(.form-one-button) .btn.right:last-child,.add-form-submit:not(.form-one-button) .btn:not(.right):first-child{border-radius:3px 0 0 3px!important}
 .add-form-submit:not(.form-one-button) .btn.right:first-child,.add-form-submit:not(.form-one-button) .btn:not(.right):last-child{border-radius:0 3px 3px 0!important}
 .add-form-submit.form-one-button .btn{border-radius:3px!important}
-.btn:not(.btn-sm){padding:6px 14px 9px}
+.btn:not(.btn-sm){padding:8px 14px 6px}
 .btn-sm{font-size:13px;line-height:16px!important}
 .btn-red, .btn-add{background:#e84c3d;color:#fff}
 .btn-red:hover, .btn-add:hover{background:#e84c3d!important;color:#fff!important}
@@ -216,9 +216,9 @@ header{position:fixed;z-index:999;top:0;left:0;right:0;height:50px;background:#f
 menu{position:absolute!important;width:24%!important;top:0;left:0;bottom:0;background:#fafafa;border:1px solid #eee;margin:-1px 10px 0 -11px;padding:10px 10px 20px 25px!important}
 menu h4{margin:10px 0 -1px;font-weight:600;}
 menu h3.menu-title{margin:8px 0 8px;color:#369fcf}
-.menu-one-item{display: block;padding:1px 10px 1px;position: relative;z-index:4;border-bottom:1px solid #eee;margin-bottom:-1px}
+.menu-one-item{display: block;padding:3px 10px 0;position: relative;z-index:4;border-bottom:1px solid #eee;margin-bottom:-1px}
 .menu-one-item:hover,.menu-one-item.active{background:#84c754;color:#fff;border-color:#84c754;z-index:5}
-.menu-one-item:hover::before,.menu-one-item.active:before {content:"\f138";float:right;font-family:"FontAwesome";font-size:17px;margin-right:0;margin-top:2px}
+.menu-one-item:hover::before,.menu-one-item.active:before {content:"\f138";float:right;font-family:"FontAwesome";font-size:17px;margin-right:0;margin-top:0;line-height:24px}
 
 /* Main */
 #main-content{margin-top:50px}

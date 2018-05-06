@@ -2,8 +2,8 @@ $(document).ready(function () {
     var formGen = null;
 
     if (__AUTHED == true) {
-        formGen = $('#theform').FormGen('add');
-        formGen.initialize();
+        //formGen = $('#theform').FormGen('add');
+        //formGen.initialize();
 
         el = document.getElementById("template_code");
         text = el.innerHTML;

@@ -804,6 +804,7 @@ jQuery(document).ready(function($) {
     $('menu').height($(document).height());
 
     logoutBtn();
+    flatApp();
 
     if (localStorage.getItem('token')) {
         __token = localStorage.getItem('token');
@@ -828,7 +829,6 @@ jQuery(document).ready(function($) {
         if ($('#right-side').length) runChat();
         $('.menu-one-item[href="' + MAIN_URL+window.location.href.split(MAIN_URL)[1] + '"]').addClass('active');
 
-        flatApp();
     } else {
         /*$('.nav-user #me_login_link').show();
         $('.nav-user #me_dropdown_info').hide();
