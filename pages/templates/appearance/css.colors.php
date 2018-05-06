@@ -1,0 +1,1 @@
+<div class="alerts alert-warning">This feature has been disabled</div>

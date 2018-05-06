@@ -1,0 +1,214 @@
+						MOD
+1. /manager_mod/users/
+GET: Danh sách user(sales) mà nó quản lý.
+Kết quả:
+{
+	"data": []
+}
+
+2. /manager_mod/users/<user_id>
+GET: Xem thông tin chi tiết của user(sales).
+Kết quả:
+{
+    "data": {
+        "id": "user1",
+        "username": "hung",
+        "password": "sha256$Numwnh9z$9d2f6ab1fabf5d7809ecdf6cc6ce1ee54b809af51f32f2a28afdcf37926b458f",
+        "name": "ha quoc hung",
+        "email": "hung@gmail.com",
+        "phone": "01688955695",
+        "address": "Binh Dinh",
+        "company": "BHome",
+        "sex": true,
+        "birthday": "1995-09-09",
+        "coin": "40",
+        "avatar": "",
+        "status": true,
+        "rank": 1
+    }
+}
+
+PUT: Sửa thông tin của user(sales).
+{
+	"name": "",
+	"phone": "",
+	"address": "",
+	"company": "",
+	"birthday": "1995-01-01",
+	"status": True,	
+	"rank": 1,
+	"avatar": ""
+}
+Kết quả:
+{
+    "data": {
+        "id": "user1",
+        "username": "hung",
+        "password": "sha256$Numwnh9z$9d2f6ab1fabf5d7809ecdf6cc6ce1ee54b809af51f32f2a28afdcf37926b458f",
+        "name": "ha quoc hung",
+        "email": "hung@gmail.com",
+        "phone": "01688955695",
+        "address": "Binh Dinh",
+        "company": "BHome",
+        "sex": true,
+        "birthday": "1995-09-09",
+        "coin": "40",
+        "avatar": "",
+        "status": true,
+        "rank": 1
+    }
+}
+
+DELETE: Xóa user(sales).
+
+3. /manager_mod/edit/
+PUT: Sửa thông tin của chính mod đó.
+{
+	"name": "",
+	"birthday": "1995-01-01",
+	"address": "",
+	"email": "",
+	"phone": "0988282727"
+}
+Kết quả:
+{
+    "data": {
+        "id": "user1",
+        "username": "hung",
+        "password": "sha256$Numwnh9z$9d2f6ab1fabf5d7809ecdf6cc6ce1ee54b809af51f32f2a28afdcf37926b458f",
+        "name": "ha quoc hung",
+        "email": "hung@gmail.com",
+        "phone": "01688955695",
+        "address": "Binh Dinh",
+        "company": "BHome",
+        "sex": true,
+        "birthday": "1995-09-09",
+        "coin": "40",
+        "avatar": "",
+        "status": true,
+        "rank": 1
+    }
+}
+
+
+3.5 /manager_mod/info/
+GET: Xem thông tin của chính mod đó.
+Kết quả:
+{
+    "data": {
+        "id": "user1",
+        "username": "hung",
+        "password": "sha256$Numwnh9z$9d2f6ab1fabf5d7809ecdf6cc6ce1ee54b809af51f32f2a28afdcf37926b458f",
+        "name": "ha quoc hung",
+        "email": "hung@gmail.com",
+        "phone": "01688955695",
+        "address": "Binh Dinh",
+        "company": "BHome",
+        "sex": true,
+        "birthday": "1995-09-09",
+        "coin": "40",
+        "avatar": "",
+        "status": true,
+        "rank": 1
+    }
+}
+
+4. Đổi mật khẩu.
+{
+	"oldpassword": "",
+	"password": ""
+}
+Kết quả:
+{
+    "data": {
+        "id": "user1",
+        "username": "hung",
+        "password": "sha256$Numwnh9z$9d2f6ab1fabf5d7809ecdf6cc6ce1ee54b809af51f32f2a28afdcf37926b458f",
+        "name": "ha quoc hung",
+        "email": "hung@gmail.com",
+        "phone": "01688955695",
+        "address": "Binh Dinh",
+        "company": "BHome",
+        "sex": true,
+        "birthday": "1995-09-09",
+        "coin": "40",
+        "avatar": "",
+        "status": true,
+        "rank": 1
+    }
+}
+
+(*)5. /manager_mod/mods/
+GET: Đọc thông tin các mod khác.
+
+10. /manager_mod/confirm_node/
+PUT: Xác thực bài đăng cho node.
+{
+	"realestatenode_id": ""
+}
+Kết quả:
+{'message': 'OK'}
+
+Lỗi: 
+{'message': 'Not result!!!'} hoặc Lỗi.
+
+11. /manager_mod/nodes/
+GET: Xem node thuộc quyền mod đó.
+Kết quả:
+{'data': []}
+
+(*)12. /manager_mod/nodes/
+POST: Thêm node thuộc quyền mod đó.
+{}
+
+13,14. Sửa xóa, xem node thuộc quyền
+/manager_mod/nodes/<node_id>
+GET: Xem
+(*)PUT: Sửa
+DELETE: Xóa
+
+21. /manager_mod/duans
+GET: Danh sách các dự án.
+POST: Thêm dự án.
+{
+    "name": "TRÚC BẠCH BUILDING",
+    "address": "141 Hoàng Hoa Thám, Phường Nghĩa Đô, Cầu Giấy, Hà Nội",
+    "tinh": "Hà Nội",
+    "huyen": "Cầu Giấy",
+    "xa": "Nghĩa Đô",
+    "details_address": null,
+    "intro": "HAREC Building là một tòa nhà cho thuê văn phòng hạng B, được trang bị hệ- Dịch vụ chuyên nghiệp",
+    "status": true,
+    "pricefrom": 2.5,
+    "infoduan": "Trúc Bạch Building\n141 Hoàng Hoa Thám, Phường Ngọc Hà, Ba Đình, Hà Nội\nGiá từ: Đang cập nhật\nChủ đầu tư: Công ty CP Đầu tư Trúc Bạch\nDiện tích: Đang cập nhật\nTiến độ: Đã hoàn thành",
+    "tiendo": null,
+    "latitude": 21.048715,
+    "longitude": 105.839746,
+    "type": "loaiduan2"
+}
+
+22. /manager_mod/duans/<duan_id>
+GET: Xem thông tin chi tiết một dự án.
+PUT: Sửa dự án.
+DELETE: Xóa dự án.
+
+
+22.5 /manager_mod/change_coin/
+PUT: Thay đổi coin của user (xác thực xem smod có phải là smod thuộc phòng kinh doanh hay không).
+{
+	"user_id": "user1",  "coin": 20
+}
+
+23. /manager_mod/historys/
+GET: Xem lịch sử giao dịch của tất cả mod, smod, admin.
+{
+    "data": [
+        {
+            "id": 1,
+            "coin": 20,
+            "type": true,
+            "user": "user1",
+            "staff": "mod2",
+            "date": "2017-12-18T13:55:12Z"
+        }
+}

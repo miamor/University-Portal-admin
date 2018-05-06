@@ -1,0 +1,12 @@
+RewriteEngine On
+RewriteBase /MTA_admin/
+#RewriteBase /tutu/test_admin/
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+
+RewriteRule ^((.*).*) index.php?page=$1
+RewriteRule !\.(json|js|ico|gif|jpg|jpeg|png|css|html|swf|flv|xml|eot|woff|ttf|woff2|svg)$ index.php [QSA,L]
+
+#RewriteRule ^((?!(request|user|modules|login|logout|appearance|categories|posts))[^/].+)$ index.php$
+#RewriteRule ^((request|user|modules|login|logout|appearance|categories|posts).*) index.php?page=$1
