@@ -19,8 +19,6 @@ var userID = splitURL[splitURL.length - 1];
 
             if (formType == 'edit') {
                 this.loadData();
-                $thisform.getGroupMem();
-                $thisform.addMember();
 
                 $.ajax({
                     url: API_URL + "/groups_getallusers",
@@ -37,9 +35,13 @@ var userID = splitURL[splitURL.length - 1];
                             $addmemForm.find('[name="users"]').trigger("chosen:updated");
                         }
                     }
-                });
+                });    
 
+                $thisform.getGroupMem();
+                $thisform.addMember();
             } else {
+                sce('#'+v);
+
                 $thisform.find('[name="name"]').change(function () {
                     $thisform.changeLinkBaseOnName();
                 });
@@ -112,7 +114,10 @@ var userID = splitURL[splitURL.length - 1];
                     $(nRow).find('.row-btn-del').click(function () {
                         $thisform.removeMemGr($(this).attr('attr-id'));
                         return false
-                    })
+                    });
+
+                    $addmemForm.find('[name="users"] option[value="'+aData.username+'"]').attr('selected', true);
+                    $('[name="users"]').trigger("chosen:updated");
                 }
             })
         }
@@ -158,6 +163,8 @@ var userID = splitURL[splitURL.length - 1];
                         }
                     }
 
+                    sce('#'+v);
+
                     $.each(response.permission, function (i, v) {
                         $('[name="permission"] option[value="' + v + '"]').attr('selected', 'selected');
                     });
@@ -173,6 +180,12 @@ var userID = splitURL[splitURL.length - 1];
 
         this.submit = function () {
             var ok = true;
+
+            $thisform.find('.sceditor-container').each(function() {
+                var vl = $(this).prev('textarea').sceditor('instance').val();
+                $(this).prev('textarea').val(vl);
+            });
+
             $('[attr-required="1"]').each(function () {
                 var val = $(this).find('input,select,textarea').val();
                 if (!val) {
@@ -182,7 +195,6 @@ var userID = splitURL[splitURL.length - 1];
                     return false;
                 }
             });
-
 
             if (ok) {
                 var postData = $thisform.form.serialize();
@@ -205,7 +217,7 @@ var userID = splitURL[splitURL.length - 1];
                     xhr.setRequestHeader('Authorization', __token);
                 },
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     if (response.status == 'error') {
                         mtip('', 'error', '', response.message);
                     } else {

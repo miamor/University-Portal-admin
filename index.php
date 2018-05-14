@@ -42,7 +42,7 @@ $_id = $config->get('id');
 if ($do) header('Content-Type: text/plain; charset=utf-8');
 else header('Content-Type: text/html; charset=utf-8');
 
-if (!isset($page) || !$page) $page = 'modules';
+if (!isset($page) || !$page) $page = 'appearance';
 
 //$page_ = $page;
 
@@ -53,7 +53,7 @@ $pageTitle = 'MTA admincp';
 if ($page == '__request') {
 	header('Content-Type: application/json; charset=utf-8');
 	if (file_exists(MAIN_PATH.'/request/'.$n.'.php')) include MAIN_PATH.'/request/'.$n.'.php';
-	else echo json_encode(array('status'=>'error', 'message'=>'Error! No file found!'));
+	else echo json_encode(array('status'=>'error', 'message'=>'Error! Wrong api!'));
 }
 else {
 	if (!file_exists('pages/'.$page.'.php')) $page = 'error';

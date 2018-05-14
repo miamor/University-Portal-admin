@@ -18,7 +18,7 @@
     <div class="form-group">
         <div class="control-label col-lg-3">Description</div>
         <div class="col-lg-9">
-            <textarea class="form-control" name="des"></textarea>
+            <textarea class="form-control scee" name="des"></textarea>
         </div>
         <div class="clearfix"></div>
     </div>

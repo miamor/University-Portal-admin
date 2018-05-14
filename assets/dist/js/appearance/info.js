@@ -94,7 +94,7 @@ var userID = splitURL[splitURL.length-1];
                     type: "post",
                     data: postData,
                     success: function (response) {
-                        console.log(response);
+                        //console.log(response);
                         //mtip('', 'success', '', 'Template cập nhật thành công');
                     },
                     error: function (a, b, c) {

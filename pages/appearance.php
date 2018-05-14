@@ -1,6 +1,6 @@
 <?php
 
-if ($n) {
+if (isset($n) && $n) {
     $pageTitle = $n;
     if ($n == 'templates') $pageTitle = 'Templates';
     else if ($n == 'css') $pageTitle = 'Colors & CSS';

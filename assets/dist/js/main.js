@@ -474,7 +474,7 @@ function initEmojiList() {
 }
 
 function sce(a) {
-    //console.log(a);
+    console.log(a);
     $(a).find('textarea.scee').each(function() {
         /*		emoList = initEmoFBList();
         		emoListStr = JSON.stringify(emoList);
@@ -537,7 +537,6 @@ function flatApp() {
     $('input[type="reset"]').addClass('btn btn-default');
 
     if ($('.bootstrap-validator-form').length) validator();
-    sce('#main-content');
     if ($('.chosen-select').length) choosen();
     /*if ($('select').length) {
         $('select').addClass('chosen-select');
@@ -760,6 +759,9 @@ function checkRoles () {
                     $('#top_navbar .items-list').append('<li class="one-item" id="'+v+'"><a href="'+MAIN_URL+'/'+v+'">'+navName[v]+'</a></li>');
                 }
             });
+            if ($.inArray('user', permission) > -1) {
+                permission.push('groups');
+            }
             if (currentPage) {
                 if ($.inArray(currentPage, permission) < 0) {
                     $('body').html('<div class="alerts alert-error">No page found or no permission.</div>'); 

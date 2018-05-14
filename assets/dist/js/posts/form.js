@@ -12,7 +12,6 @@ var itemID = splitURL[splitURL.length - 1];
                 $(this).find('.control-label, .control-labels').append(' <span class="text-danger">*</span>')
             });
 
-            sce('#'+v);
             $('[name="link"]').attr('disabled', true);
             //$thisform.form.append('<input name="link_" type="hidden"/>');
             
@@ -23,6 +22,7 @@ var itemID = splitURL[splitURL.length - 1];
                 $('input[name="feature"][value="false"]').attr('checked', true).closest('.radio').addClass('checked');
 
                 this.getCategories();
+                sce('#'+v);
 
                 $thisform.find('[name="name"]').change(function () {
                     $thisform.changeLinkBaseOnName();
@@ -81,6 +81,8 @@ var itemID = splitURL[splitURL.length - 1];
                             }
                         }
 
+                        sce('#'+v);
+
                         $thisform.getCategories(response.cat);
 
                         $('input[name="show"][value="' + response.show + '"]').attr('checked', true).closest('.radio').addClass('checked');
@@ -110,6 +112,12 @@ var itemID = splitURL[splitURL.length - 1];
 
         this.submit = function () {
             var ok = true;
+
+            $thisform.find('.sceditor-container').each(function() {
+                var vl = $(this).prev('textarea').sceditor('instance').val();
+                $(this).prev('textarea').val(vl);
+            });
+
             $('[attr-required="1"]').each(function () {
                 if (formType == 'add' || !$(this).is('.link-input')) {
                     var val = $(this).find('input,select,textarea').val();
@@ -166,7 +174,7 @@ var itemID = splitURL[splitURL.length - 1];
                     xhr.setRequestHeader('Authorization', __token);
                 },
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     if (response.status == 'error') {
                         mtip('', 'error', '', response.message);
                     } else {
@@ -191,7 +199,7 @@ var itemID = splitURL[splitURL.length - 1];
                     xhr.setRequestHeader('Authorization', __token);
                 },
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     if (response.status == 'error') {
                         mtip('', 'error', '', response.message);
                     } else {

@@ -22,7 +22,7 @@ function createImageReal(src, div, paramname) {
 
         $(div).next('#preview_thumbs').find('.remove-thumb').each(function () {
             $(this).click(function (event) {
-                console.log('remove_thumb clicked');
+                //console.log('remove_thumb clicked');
                 event.stopPropagation();
                 $(this).parent('.preview').hide();
                 if (!$(div).find('.preview').length) {
@@ -78,6 +78,8 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
         this.editor_tpl = null;
         this.editor_js = null;
         this.form = $('#' + v);
+
+        sce('#'+v);
 
         this.initialize = function () {
             $('[attr-required="1"]').each(function () {
@@ -163,7 +165,7 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
                     xhr.setRequestHeader('Authorization', __token);
                 },
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     $thisform.deleteImageField(a);
                     mtip('', 'success', '', 'Xóa thành công');
                 },
@@ -222,7 +224,7 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
                 uploadFinished: function (i, file, response) {
                     $.data(file).addClass('done');
                     // response is the JSON object that post_file.php returns
-                    console.log(response);
+                    //console.log(response);
                     if (response.status == 'error') {
                         mtip('', 'error', '', response.message)
                     } else {
@@ -230,7 +232,7 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
                         $('#img_link').val(img);
 
                         var $thisImgHolder = $($.data(file)[0]);
-                        console.log($thisImgHolder);
+                        //console.log($thisImgHolder);
                         $thisImgHolder.find('.img_pr_link').val(img);
 
                         $thisImgHolder.find('.remove-thumb').click(function (event) {
@@ -242,7 +244,7 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
                 },
 
                 error: function (err, file) {
-                    console.log(err);
+                    //console.log(err);
                     switch (err) {
                         case 'BrowserNotSupported':
                             mtip('', 'error', '', 'Your browser does not support HTML5 file uploads!');
@@ -282,6 +284,13 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
             var ok = true;
             $imOneDiv = $(a).closest('.image-one');
             var postData = {};
+            /*$imOneDiv.find('textarea').each(function () {
+                $(this).val($(this).sceditor('instance').val());
+            });*/
+            $imOneDiv.find('.sceditor-container').each(function() {
+                var vl = $(this).prev('textarea').sceditor('instance').val();
+                $(this).prev('textarea').val(vl);
+            });
             $imOneDiv.find('input,select,textarea').each(function () {
                 postData[$(this).attr('attr-name')] = $(this).val();
                 if (!$(this).is('textarea') && !$(this).val()) {
@@ -310,7 +319,7 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
                     xhr.setRequestHeader('Authorization', __token);
                 },
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     $imOneDiv.attr('attr-id', response._id);
                     $(a).attr('onclick', 'javascript:formGen.submitImage(\'update\', this); return false').html('<i class="fa fa-check"></i> Update');
                     mtip('', 'success', '', 'Thêm thành công');
@@ -331,7 +340,7 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
                     xhr.setRequestHeader('Authorization', __token);
                 },
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     mtip('', 'success', '', 'Cập nhật thành công');
                 },
                 error: function (a, b, c) {
@@ -369,7 +378,7 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
                     xhr.setRequestHeader('Authorization', __token);
                 },
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     if (response.status == 'success') {
                         response = response.data;
 
@@ -495,7 +504,7 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
                     xhr.setRequestHeader('Authorization', __token);
                 },
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     var html = '';
                     $.each(response, function (i, v) {
                         html += '<div class="image-one" attr-id="' + v._id + '"><div class="form-group" attr-required="1"><div class="col-lg-2 control-label">Tiêu đề <span class="text-danger">*</span></div> <div class="col-lg-8"><input class="form-control" attr-name="name" value="' + v.name + '" placeholder="Tiêu đề"/></div> <div class="clearfix"></div></div>   <div class="form-group" attr-required="1"><div class="col-lg-2 control-label">Link ảnh/video <span class="text-danger">*</span></div> <div class="col-lg-8"><input class="form-control" attr-name="url" value="' + v.url + '" placeholder="Link ảnh/video"/></div><div class="col-lg-2 no-padding-left upload-img-button"><a href="#" onclick="javascript:formGen.uploadImageForm(this); return false" title="Upload an image from computer"><i class="fa fa-cloud-upload"></i></a></div> <div class="clearfix"></div></div>   <div class="form-group"><div class="col-lg-2 control-label">Caption</div> <div class="col-lg-8"><textarea class="form-control scee" attr-name="content">' + v.content + '</textarea></div> <div class="col-lg-2 image-one-submit"><a class="btn btn-danger btn-block" href="#" onclick="javascript:formGen.deleteImage(this); return false"><i class="fa fa-check"></i> Delete</a> <a class="btn btn-primary btn-block" href="#" onclick="javascript:formGen.submitImage(\'update\', this); return false"><i class="fa fa-check"></i> Update</a></div> <div class="clearfix"></div></div>  </div>';
@@ -566,7 +575,7 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
                         code: $thisform.form.find('[name="javascript"]').val()
                     },
                     success: function (response) {
-                        console.log(response);
+                        //console.log(response);
                     }
                 });
                 $thisform.form.find('[name="javascript"]').val('true');
@@ -600,7 +609,7 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
                     xhr.setRequestHeader('Authorization', __token);
                 },
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     if (response.status == 'error') {
                         mtip('', 'error', '', response.message);
                     } else {

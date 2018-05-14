@@ -24,7 +24,7 @@ $(document).ready(function () {
                     code: $thisform.find('[name="code"]').val()
                 },
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     mtip('', 'success', '', 'CSS cập nhật thành công');
                 },
                 error: function (a, b, c) {

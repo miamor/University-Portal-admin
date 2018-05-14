@@ -108,7 +108,7 @@ var itemID = splitURL[splitURL.length - 1];
                     xhr.setRequestHeader('Authorization', __token);
                 },
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     if (response.status == 'error') {
                         mtip('', 'error', '', response.message);
                     } else {
@@ -132,7 +132,7 @@ var itemID = splitURL[splitURL.length - 1];
                     xhr.setRequestHeader('Authorization', __token);
                 },
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     if (response.status == 'error') {
                         mtip('', 'error', '', response.message);
                     } else {

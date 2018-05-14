@@ -114,7 +114,7 @@ var userID = splitURL[splitURL.length - 1];
                         xhr.setRequestHeader('Authorization', __token);
                     },
                     success: function (response) {
-                        console.log(response);
+                        //console.log(response);
                         mtip('', 'success', '', 'Thông tin người dùng đã được cập nhật thành công');
                     },
                     error: function (a, b, c) {
