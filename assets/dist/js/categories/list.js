@@ -1,6 +1,6 @@
 function del (itemID) {
     $a = $('a[attr-id="'+itemID+'"]');
-    console.log('del '+itemID+' called!');
+    //console.log('del '+itemID+' called!');
     var title = $a.closest('tr').find('td:nth-child(2)').text();
     if (itemID && title) {
         if (confirm("Are you sure want to remove "+title+" permanently?")) {

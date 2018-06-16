@@ -22,7 +22,7 @@ function createImageReal(src, div, paramname) {
 
         $(div).next('#preview_thumbs').find('.remove-thumb').each(function () {
             $(this).click(function (event) {
-                console.log('remove_thumb clicked');
+                console.log'remove_thumb clicked');
                 event.stopPropagation();
                 $(this).parent('.preview').hide();
                 if (!$(div).find('.preview').length) {
@@ -150,7 +150,7 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
                     xhr.setRequestHeader('Authorization', __token);
                 },
                 success: function(response) {
-                    console.log(response);
+                    console.logresponse);
                     $thisform.deleteImageField(a);
                     mtip('', 'success', '', 'Xóa thành công');
                 },
@@ -208,7 +208,7 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
                 uploadFinished: function(i, file, response) {
                     $.data(file).addClass('done');
                     // response is the JSON object that post_file.php returns
-                    console.log(response);
+                    console.logresponse);
                     if (response.status == 'error') {
                         mtip('', 'error', '', response.message)
                     } else {
@@ -293,7 +293,7 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
                     xhr.setRequestHeader('Authorization', __token);
                 },
                 success: function(response) {
-                    console.log(response);
+                    console.logresponse);
                     $imOneDiv.attr('attr-id', response._id);
                     $(a).attr('onclick', 'javascript:formGen.submitImage(\'update\', this); return false').html('<i class="fa fa-check"></i> Update');
                     mtip('', 'success', '', 'Thêm thành công');
@@ -314,7 +314,7 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
                     xhr.setRequestHeader('Authorization', __token);
                 },
                 success: function(response) {
-                    console.log(response);
+                    console.logresponse);
                     mtip('', 'success', '', 'Cập nhật thành công');
                 },
                 error: function(a, b, c) {
@@ -352,7 +352,7 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
                     xhr.setRequestHeader('Authorization', __token);
                 },
                 success: function(response) {
-                    console.log(response);
+                    console.logresponse);
                     if (response.status == 'success') {
                         response = response.data;
 
@@ -573,7 +573,7 @@ errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
                     xhr.setRequestHeader('Authorization', __token);
                 },
                 success: function(response) {
-                    //console.log(response);
+                    console.logresponse);
                     if (response.status == 'success') {
                         mtip('', 'success', '', 'Module cập nhật thành công');
                     } else {

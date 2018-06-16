@@ -21,10 +21,6 @@ var itemID = splitURL[splitURL.length - 1];
                 $('input[name="feature"][value="false"]').attr('checked', true).closest('.radio').addClass('checked');
 
                 this.getCategories();
-
-                $thisform.find('[name="name"]').change(function () {
-                    $thisform.changeLinkBaseOnName();
-                });
             }
 
             this.form.submit(function () {

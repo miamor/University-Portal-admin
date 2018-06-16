@@ -45,9 +45,8 @@ class Config {
 
 	public function __construct () {
 		$this->uLink = MAIN_URL.'/user';
-		$this->smLink = MAIN_URL.'/modsmod';
-		$this->mLink = $this->smLink.'/mod';
-		$this->sLink = $this->smLink.'/smod';
+		$this->gLink = MAIN_URL.'/groups';
+		$this->meLink = MAIN_URL.'/me';
 		$this->modulesLink = MAIN_URL.'/modules';
 		$this->pLink = MAIN_URL.'/posts';
 		$this->cLink = MAIN_URL.'/categories';
