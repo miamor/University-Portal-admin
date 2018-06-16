@@ -4,7 +4,7 @@
     <h4 class="menu-one-box-header">Info</h4>
     <div class="menu-one-box-body">
     <a class="menu-one-item" href="<?php echo $config->aLink ?>/info">Page info</a>
-    <a class="menu-one-item" href="<?php echo $config->aLink ?>/structure">Page structure</a>
+    <a class="menu-one-item hidden" href="<?php echo $config->aLink ?>/structure">Page structure</a>
     </div>
 </div>
 

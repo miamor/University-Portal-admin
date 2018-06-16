@@ -2,6 +2,75 @@ var splitURL = location.href.split('/');
 var __menu = splitURL[splitURL.length - 1];
 var currentModule;
 
+
+var template = '<div class="preview"><div class="remove-thumb"><i class="fa fa-times"></i></div><span class="imageHolder"><img /><span class="uploaded"></span></span><div class="progressHolder"><div class="progress"></div></div></div>';
+
+function createImageReal(src, div, paramname) {
+    if (src.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+        var preview = $(template),
+            image = $('img', preview);
+
+        image.width = 100;
+        image.height = 100;
+
+        image.attr('src', src);
+
+        $(div).find('.message').hide();
+        //preview.appendTo(div);
+        $(div).next('#preview_thumbs').children('.clearfix').before(preview);
+        preview.addClass('done');
+
+        $(div).next('#preview_thumbs').find('.remove-thumb').each(function () {
+            $(this).click(function (event) {
+                console.log('remove_thumb clicked');
+                event.stopPropagation();
+                $(this).parent('.preview').hide();
+                if (!$(div).find('.preview').length) {
+                    $(message).show()
+                }
+                $('[name="'+paramname+'"]').val($('[name="'+paramname+'"]').val().replace(src, ''));
+                $('[name="'+paramname+'"]').val($('[name="'+paramname+'"]').val().replace(/,+/g, ','));
+            });
+        })
+    }
+}
+
+function createImage(file, div) {
+    var preview = $(template),
+        image = $('img', preview);
+
+    var reader = new FileReader();
+
+    image.width = 100;
+    image.height = 100;
+
+    reader.onload = function (e) {
+        image.attr('src', e.target.result);
+    };
+    reader.readAsDataURL(file);
+
+    $(div).find('.message').hide();
+    //preview.appendTo(div);
+    $(div).next('#preview_thumbs').children('.clearfix').before(preview);
+
+    $(div).next('#preview_thumbs').find('.remove-thumb').each(function () {
+        $(this).click(function (event) {
+            event.stopPropagation();
+            $(this).parent('.preview').hide();
+            if (!$(div).find('.preview').length) {
+                $(message).show()
+            }
+        });
+    })
+
+    // Associating a preview container
+    // with the file, using jQuery's $.data():
+    $.data(file, preview);
+}
+
+errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge"];
+
+
 (function($) {
     FormGen = function(formType) {
         var v = $(this).attr('id');
@@ -109,6 +178,7 @@ var currentModule;
             <input type="file" accept="image/*" name="img_input" class="up-file-input hidden" />\
             <input type="hidden" placeholder="Panorama image (url)" class="form-control" name="img_link" id="img_link" />\
         </div>\
+        <div id="preview_thumbs" class="dropbox_previews"> <div class="clearfix"></div></div>\
         <div class="add-form-submit center">\
             <input value="Done" class="btn" type="submit" class="done-upload-img">\
         </div>';
@@ -116,21 +186,22 @@ var currentModule;
             $('.done-upload-img').click(function() {
                 $(a).closest('.form-group').find('[attr-name="url"]').val($('#img_link').val());
                 remove_popup();
-            })
+            });
+            $thisform.uploadImage();
         }
 
 
-        this.uploadPanorama = function() {
+        this.uploadImage = function() {
             var dropbox = $('#dropbox_uploadimg'),
                 message = $('.message', dropbox);
 
             dropbox.UploadImages({
                 // The name of the $_FILES entry:
-                paramname: 'panorama',
+                paramname: 'img_input',
 
                 maxfiles: 1,
                 maxfilesize: 8,
-                url: API_URL + '/manager_user/uploadpanorama/',
+                url: MAIN_URL + "/__request/upload_img",
                 token: __token,
                 dragable: false,
 
@@ -139,15 +210,15 @@ var currentModule;
                     // response is the JSON object that post_file.php returns
                     console.log(response);
                     if (response.status == 'error') {
-                        mtip('', 'error', '', response.data)
+                        mtip('', 'error', '', response.message)
                     } else {
                         img = response.data;
-                        $('#panorama_image').val(img);
+                        $('#img_link').val(img);
 
                         var $thisImgHolder = $($.data(file)[0]);
                         $thisImgHolder.find('.remove-thumb').click(function(event) {
                             event.stopPropagation();
-                            $('#panorama_image').val('');
+                            $('#img_link').val('');
                             $thisImgHolder.remove();
                         })
                     }

@@ -770,7 +770,7 @@ jQuery(document).ready(function($) {
             return false
         });
         if ($('#right-side').length) runChat();
-        $('.menu-one-item[href="' + window.location.href + '"]').addClass('active');
+        $('.menu-one-item[href="' + MAIN_URL+window.location.href.split(MAIN_URL)[1] + '"]').addClass('active');
     } else {
         if (location.href.indexOf('login') <= -1) location.href = MAIN_URL+'/login';
         /*$('.nav-user #me_login_link').show();

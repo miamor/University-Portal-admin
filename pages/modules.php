@@ -13,6 +13,7 @@ if ($n) {
     if ($mode != 'advanced') $mode = 'basic';
 
     $config->addJS('plugins', 'ace/src/ace.js');
+    $config->addJS('plugins', 'filechooser/jquery.filedrop.js');
     $config->addJS('dist', $page.'/form.js');
     $config->addJS('dist', $page.'/edit.js');
 

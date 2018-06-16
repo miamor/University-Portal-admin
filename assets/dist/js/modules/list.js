@@ -77,13 +77,13 @@ $(document).ready(function() {
                 data: "content",
                 render: function(data, type, row) {
                     var deleteBtn = '<span><i class="fa fa-trash"></i></span>';
-                    if (row.fix != 'true') deleteBtn = '<a attr-id="' + row.link + '" class="row-btn-del text-danger" href="#" onclick="javascript:del(\'' + row.link + '\'); return false"><i class="fa fa-trash"></i></a>';
+                    if (row.fix != 1) deleteBtn = '<a attr-id="' + row.link + '" class="row-btn-del text-danger" href="#" onclick="javascript:del(\'' + row.link + '\'); return false"><i class="fa fa-trash"></i></a>';
                     return '<div class="row-btns"><a attr-id="' + row.link + '" class="row-btn-edit" href="' + MAIN_URL + '/modules/' + row.link + '"><i class="fa fa-pencil"></i></a> ' + deleteBtn + '</div>'
                 }
             }
         ],
         fnRowCallback: function(nRow, aData, iDisplayIndex) {
-            if (aData.fix == 'true') {
+            if (aData.fix == 1) {
                 $(nRow).addClass('sticky');
             }
         }

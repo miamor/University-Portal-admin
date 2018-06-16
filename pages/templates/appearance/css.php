@@ -1,6 +1,6 @@
-<h2>Edit CSS</h2>
+<h2>Colors & CSS</h2>
 
-<form id="submit_code" class="nav-tabs-custom">
+<div class="nav-tabs-custom">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#colors" data-toggle="tab">Colors</a></li>
         <li><a href="#css" data-toggle="tab">CSS</a></li>
@@ -13,8 +13,15 @@
             <div class="legendBox module-extend form-group">
                 <h3 class="legendBox-header">CSS</h3>
                 <div class="module-template">
-                    <textarea name="code" class="hidden"></textarea>
-                    <div class="ace-editor" id="css_code"><?php echo file_get_contents($__cssDir.'/site.css') ?></div>
+                    <form id="submit_code">
+                        <textarea name="code" class="hidden"></textarea>
+                        <div class="ace-editor" id="css_code"><?php echo file_get_contents($__cssDir.'/site.css') ?></div>
+
+                        <div class="add-form-submit center">
+                            <input type="reset" value="Reset" class="btn btn-default">
+                            <input type="submit" value="Submit" class="btn">
+                        </div>
+                    </form>
                 </div>
 
                 <div class="clearfix"></div>
@@ -22,9 +29,5 @@
         </div><!-- /.tab-pane -->
     </div>
 
-    <div class="add-form-submit center">
-		<input type="reset" value="Reset" class="btn btn-default">
-		<input type="submit" value="Submit" class="btn">
-	</div>
-</form>
+</div>
 
